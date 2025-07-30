@@ -9,17 +9,17 @@
       }
     },
     {
-      "src": "backend/app-minimal.py",
+      "src": "backend/app-tiny.py",
       "use": "@vercel/python",
       "config": {
-        "requirements": "backend/requirements-minimal.txt"
+        "requirements": "backend/requirements-tiny.txt"
       }
     }
   ],
   "routes": [
     {
       "src": "/api/(.*)",
-      "dest": "backend/app-minimal.py"
+      "dest": "backend/app-tiny.py"
     },
     {
       "src": "/(.*)",
