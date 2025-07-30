@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import { Heart, Sparkles, Stars, Camera } from 'lucide-react';
+import { Heart, Sparkles, Stars, Camera, BookOpen } from 'lucide-react';
+import { Link } from 'react-router-dom';
 import { PhotoUpload } from '@/components/PhotoUpload';
 import { PromptGenerator } from '@/components/PromptGenerator';
 import { PoemEditor } from '@/components/PoemEditor';
@@ -80,6 +81,21 @@ const Index = () => {
                 <span className="hidden sm:inline md:hidden">View Vault</span>
                 <span className="sm:hidden">Vault</span>
               </Button>
+            </div>
+            
+            {/* Poetry of Aditya Link */}
+            <div className="mt-4 sm:mt-6 animate-fade-in-up" style={{animationDelay: '0.8s'}}>
+              <Link to="/poetry-of-aditya">
+                <Button 
+                  variant="outline" 
+                  size="sm"
+                  className="border-purple-300 text-purple-600 hover:bg-purple-50 hover:border-purple-400 transition-all duration-300"
+                >
+                  <BookOpen className="w-4 h-4 mr-2" />
+                  <span className="hidden sm:inline">Poetry of Aditya</span>
+                  <span className="sm:hidden">Aditya's Poetry</span>
+                </Button>
+              </Link>
             </div>
           </div>
         </div>
