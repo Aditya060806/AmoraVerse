@@ -101,6 +101,26 @@ const Index = () => {
                 </Button>
               </Link>
             </div>
+            
+            {/* Pixel Amor Link */}
+            <div className="mt-2 sm:mt-3 animate-fade-in-up" style={{animationDelay: '1s'}}>
+              <a 
+                href="https://pixel-amor.vercel.app/" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="inline-block"
+              >
+                <Button 
+                  variant="outline" 
+                  size="sm"
+                  className="border-pink-300 text-pink-600 hover:bg-pink-50 hover:border-pink-400 transition-all duration-300"
+                >
+                  <Heart className="w-4 h-4 mr-2" />
+                  <span className="hidden sm:inline">Visit Pixel Amor</span>
+                  <span className="sm:hidden">Pixel Amor</span>
+                </Button>
+              </a>
+            </div>
           </div>
         </div>
       </div>
