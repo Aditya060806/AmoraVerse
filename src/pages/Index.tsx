@@ -43,9 +43,13 @@ const Index = () => {
             <div className="absolute top-4 sm:top-6 md:top-10 right-1/4 text-sm sm:text-base md:text-xl animate-float-heart opacity-50" style={{animationDelay: '1s'}}>💫</div>
             <div className="absolute top-8 sm:top-12 md:top-20 left-1/3 text-xs sm:text-sm md:text-lg animate-float-heart opacity-40" style={{animationDelay: '2s'}}>✨</div>
             
-            <h1 className="text-3xl sm:text-4xl md:text-6xl lg:text-8xl font-romantic love-gradient mb-3 sm:mb-4 md:mb-6 animate-fade-in-up">
-              AmoraVerse
-            </h1>
+            <div className="mb-10 sm:mb-12 md:mb-16 animate-fade-in-up flex justify-center items-center">
+              <img 
+                src="/AmoraVerse-bg.png" 
+                alt="AmoraVerse" 
+                className="h-40 sm:h-48 md:h-56 lg:h-64 xl:h-72 2xl:h-80 object-contain drop-shadow-2xl"
+              />
+            </div>
             
             <p className="text-base sm:text-lg md:text-xl lg:text-2xl font-elegant text-primary/80 mb-2 sm:mb-3 md:mb-4 animate-fade-in-up px-1 sm:px-2 md:px-0" style={{animationDelay: '0.2s'}}>
               Where AI meets the language of love

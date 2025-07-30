@@ -4,7 +4,7 @@ import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { Separator } from '@/components/ui/separator';
-import { Lock, Unlock, Heart, Star, BookOpen, Sparkles, ArrowLeft, Search, Filter, Bookmark, Share2, Copy, Eye } from 'lucide-react';
+import { Lock, Unlock, Heart, Star, BookOpen, Sparkles, ArrowLeft, Search, Filter, Bookmark, Share2, Copy, Eye, Music, Palette, Zap, Crown, Flower, Moon, Sun, Cloud, Rainbow } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
 const PoetryOfAditya: React.FC = () => {
@@ -15,6 +15,7 @@ const PoetryOfAditya: React.FC = () => {
   const [selectedCategory, setSelectedCategory] = useState('all');
   const [copiedText, setCopiedText] = useState('');
   const [favorites, setFavorites] = useState<string[]>([]);
+  const [isLoading, setIsLoading] = useState(false);
 
   // Auto-focus on input when component mounts
   useEffect(() => {
@@ -25,25 +26,29 @@ const PoetryOfAditya: React.FC = () => {
   }, []);
 
   const handleAccessCode = () => {
-    if (accessCode === '1002') {
-      setIsUnlocked(true);
-      setError('');
-      // Add success animation
-      document.body.classList.add('unlock-success');
-      setTimeout(() => {
-        document.body.classList.remove('unlock-success');
-      }, 2000);
-    } else {
-      setError('Invalid access code. Please try again.');
-      // Add shake animation
-      const card = document.querySelector('.access-card');
-      if (card) {
-        card.classList.add('shake');
+    setIsLoading(true);
+    setTimeout(() => {
+      if (accessCode === '1002') {
+        setIsUnlocked(true);
+        setError('');
+        // Add success animation
+        document.body.classList.add('unlock-success');
         setTimeout(() => {
-          card.classList.remove('shake');
-        }, 500);
+          document.body.classList.remove('unlock-success');
+        }, 2000);
+      } else {
+        setError('Invalid access code. Please try again.');
+        // Add shake animation
+        const card = document.querySelector('.access-card');
+        if (card) {
+          card.classList.add('shake');
+          setTimeout(() => {
+            card.classList.remove('shake');
+          }, 500);
+        }
       }
-    }
+      setIsLoading(false);
+    }, 1000);
   };
 
   const copyToClipboard = (text: string) => {
@@ -61,39 +66,58 @@ const PoetryOfAditya: React.FC = () => {
   };
 
   const categories = [
-    { id: 'all', label: 'All Poetry', icon: BookOpen },
-    { id: 'stages', label: '7 Stages', icon: Heart },
-    { id: 'quotes', label: 'Quotes', icon: Star },
-    { id: 'poems', label: 'Poems', icon: BookOpen },
-    { id: 'definitions', label: 'Definitions', icon: Sparkles },
+    { id: 'all', label: 'All Poetry', icon: BookOpen, color: 'from-rose-300 to-pink-300' },
+    { id: 'stages', label: '7 Stages', icon: Heart, color: 'from-red-300 to-rose-300' },
+    { id: 'quotes', label: 'Quotes', icon: Star, color: 'from-amber-300 to-orange-300' },
+    { id: 'poems', label: 'Poems', icon: Music, color: 'from-blue-300 to-indigo-300' },
+    { id: 'definitions', label: 'Definitions', icon: Sparkles, color: 'from-purple-300 to-pink-300' },
   ];
 
   if (!isUnlocked) {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-purple-50 via-pink-50 to-purple-100 flex items-center justify-center p-4 relative overflow-hidden">
-        {/* Animated background elements */}
+      <div className="min-h-screen bg-gradient-to-br from-rose-50 via-pink-50 via-purple-50 to-indigo-50 flex items-center justify-center p-4 relative overflow-hidden">
+        {/* Enhanced animated background elements with lighter colors */}
         <div className="absolute inset-0 overflow-hidden">
-          <div className="absolute top-10 left-10 w-20 h-20 bg-purple-200 rounded-full opacity-20 animate-pulse"></div>
-          <div className="absolute top-20 right-20 w-16 h-16 bg-pink-200 rounded-full opacity-30 animate-pulse" style={{animationDelay: '1s'}}></div>
-          <div className="absolute bottom-20 left-20 w-12 h-12 bg-purple-300 rounded-full opacity-25 animate-pulse" style={{animationDelay: '2s'}}></div>
-          <div className="absolute bottom-10 right-10 w-24 h-24 bg-pink-300 rounded-full opacity-20 animate-pulse" style={{animationDelay: '0.5s'}}></div>
+          <div className="absolute top-10 left-10 w-20 h-20 bg-gradient-to-r from-rose-200 to-pink-200 rounded-full opacity-20 animate-pulse"></div>
+          <div className="absolute top-20 right-20 w-16 h-16 bg-gradient-to-r from-pink-200 to-purple-200 rounded-full opacity-25 animate-pulse" style={{animationDelay: '1s'}}></div>
+          <div className="absolute bottom-20 left-20 w-12 h-12 bg-gradient-to-r from-purple-200 to-indigo-200 rounded-full opacity-20 animate-pulse" style={{animationDelay: '2s'}}></div>
+          <div className="absolute bottom-10 right-10 w-24 h-24 bg-gradient-to-r from-indigo-200 to-rose-200 rounded-full opacity-15 animate-pulse" style={{animationDelay: '0.5s'}}></div>
+          <div className="absolute top-1/2 left-1/4 w-8 h-8 bg-gradient-to-r from-rose-200 to-pink-200 rounded-full opacity-15 animate-bounce" style={{animationDelay: '1.5s'}}></div>
+          <div className="absolute top-1/3 right-1/3 w-10 h-10 bg-gradient-to-r from-purple-200 to-indigo-200 rounded-full opacity-20 animate-pulse" style={{animationDelay: '0.8s'}}></div>
         </div>
 
-        <Card className="w-full max-w-md access-card relative z-10 transform transition-all duration-500 hover:scale-105 shadow-2xl border-0 bg-white/90 backdrop-blur-sm">
+        {/* Floating particles with lighter colors */}
+        <div className="absolute inset-0 pointer-events-none">
+          {[...Array(20)].map((_, i) => (
+            <div
+              key={i}
+              className="absolute w-1 h-1 bg-gradient-to-r from-rose-300 to-pink-300 rounded-full animate-float"
+              style={{
+                left: `${Math.random() * 100}%`,
+                top: `${Math.random() * 100}%`,
+                animationDelay: `${Math.random() * 3}s`,
+                animationDuration: `${3 + Math.random() * 2}s`
+              }}
+            />
+          ))}
+        </div>
+
+        <Card className="w-full max-w-md access-card relative z-10 transform transition-all duration-500 hover:scale-105 shadow-2xl border-0 bg-white/95 backdrop-blur-md">
           <CardHeader className="text-center pb-6">
-            <div className="mx-auto mb-6 w-20 h-20 bg-gradient-to-r from-purple-500 to-pink-500 rounded-full flex items-center justify-center shadow-lg animate-bounce">
-              <Lock className="w-10 h-10 text-white" />
+            <div className="mx-auto mb-6 w-24 h-24 bg-gradient-to-r from-rose-400 via-pink-400 to-purple-400 rounded-full flex items-center justify-center shadow-2xl animate-bounce relative overflow-hidden">
+              <div className="absolute inset-0 bg-gradient-to-r from-rose-500 to-pink-500 animate-spin-slow"></div>
+              <Lock className="w-12 h-12 text-white relative z-10" />
             </div>
-            <CardTitle className="text-3xl font-bold bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent mb-2">
+            <CardTitle className="text-4xl font-bold bg-gradient-to-r from-rose-500 via-pink-500 to-purple-500 bg-clip-text text-transparent mb-2 animate-pulse">
               Poetry of Aditya
             </CardTitle>
-            <p className="text-gray-600 mt-3 text-lg">
+            <p className="text-gray-600 mt-3 text-lg font-medium">
               Enter the special access code to unlock this exclusive collection
             </p>
             <div className="flex justify-center mt-4 space-x-2">
-              <div className="w-2 h-2 bg-purple-400 rounded-full animate-pulse"></div>
-              <div className="w-2 h-2 bg-pink-400 rounded-full animate-pulse" style={{animationDelay: '0.2s'}}></div>
-              <div className="w-2 h-2 bg-purple-400 rounded-full animate-pulse" style={{animationDelay: '0.4s'}}></div>
+              <div className="w-3 h-3 bg-gradient-to-r from-rose-300 to-pink-300 rounded-full animate-pulse"></div>
+              <div className="w-3 h-3 bg-gradient-to-r from-pink-300 to-purple-300 rounded-full animate-pulse" style={{animationDelay: '0.2s'}}></div>
+              <div className="w-3 h-3 bg-gradient-to-r from-purple-300 to-rose-300 rounded-full animate-pulse" style={{animationDelay: '0.4s'}}></div>
             </div>
           </CardHeader>
           <CardContent className="space-y-6">
@@ -105,24 +129,28 @@ const PoetryOfAditya: React.FC = () => {
                 value={accessCode}
                 onChange={(e) => setAccessCode(e.target.value)}
                 onKeyPress={(e) => e.key === 'Enter' && handleAccessCode()}
-                className="text-center text-xl font-mono border-2 border-purple-200 focus:border-purple-500 transition-colors"
+                className="text-center text-xl font-mono border-2 border-rose-200 focus:border-rose-400 transition-all duration-300 bg-white/90 backdrop-blur-sm"
               />
               {error && (
-                <div className="text-red-500 text-sm text-center bg-red-50 p-2 rounded-lg border border-red-200 animate-shake">
+                <div className="text-red-500 text-sm text-center bg-gradient-to-r from-red-50 to-rose-50 p-3 rounded-lg border border-red-200 animate-shake">
                   {error}
                 </div>
               )}
             </div>
             <Button 
               onClick={handleAccessCode}
-              className="w-full bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600 text-white font-semibold py-3 text-lg transition-all duration-300 transform hover:scale-105 shadow-lg"
+              disabled={isLoading}
+              className="w-full bg-gradient-to-r from-rose-400 via-pink-400 to-purple-400 hover:from-rose-500 hover:via-pink-500 hover:to-purple-500 text-white font-semibold py-4 text-lg transition-all duration-300 transform hover:scale-105 shadow-lg relative overflow-hidden group"
             >
-              <Unlock className="w-5 h-5 mr-2" />
-              Unlock Poetry
+              <div className="absolute inset-0 bg-gradient-to-r from-rose-500 to-pink-500 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+              <Unlock className="w-6 h-6 mr-2 relative z-10" />
+              <span className="relative z-10">
+                {isLoading ? 'Unlocking...' : 'Unlock Poetry'}
+              </span>
             </Button>
             
             <div className="text-center">
-              <Link to="/" className="text-purple-600 hover:text-purple-800 text-sm flex items-center justify-center">
+              <Link to="/" className="text-rose-600 hover:text-rose-800 text-sm flex items-center justify-center transition-colors duration-300 hover:scale-105">
                 <ArrowLeft className="w-4 h-4 mr-1" />
                 Back to AmoraVerse
               </Link>
@@ -134,45 +162,63 @@ const PoetryOfAditya: React.FC = () => {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-purple-50 via-pink-50 to-purple-100">
-      {/* Header with Navigation */}
-      <div className="sticky top-0 z-50 bg-white/80 backdrop-blur-md border-b border-purple-200 shadow-sm">
+    <div className="min-h-screen bg-gradient-to-br from-rose-50 via-pink-50 via-purple-50 to-indigo-50 relative overflow-hidden">
+      {/* Enhanced floating background elements with lighter colors */}
+      <div className="absolute inset-0 pointer-events-none">
+        {[...Array(15)].map((_, i) => (
+          <div
+            key={i}
+            className="absolute w-2 h-2 bg-gradient-to-r from-rose-300 to-pink-300 rounded-full animate-float"
+            style={{
+              left: `${Math.random() * 100}%`,
+              top: `${Math.random() * 100}%`,
+              animationDelay: `${Math.random() * 5}s`,
+              animationDuration: `${4 + Math.random() * 3}s`
+            }}
+          />
+        ))}
+      </div>
+
+      {/* Header with Enhanced Navigation */}
+      <div className="sticky top-0 z-50 bg-white/90 backdrop-blur-md border-b border-rose-200 shadow-lg">
         <div className="container mx-auto px-4 py-4">
           <div className="flex items-center justify-between">
             <div className="flex items-center space-x-4">
-              <Link to="/" className="text-purple-600 hover:text-purple-800 transition-colors">
+              <Link to="/" className="text-rose-600 hover:text-rose-800 transition-all duration-300 hover:scale-110">
                 <ArrowLeft className="w-6 h-6" />
               </Link>
               <div className="flex items-center space-x-3">
-                <Unlock className="w-8 h-8 text-purple-600" />
-                <h1 className="text-3xl font-bold bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent">
+                <div className="w-10 h-10 bg-gradient-to-r from-rose-400 to-pink-400 rounded-full flex items-center justify-center animate-pulse">
+                  <Unlock className="w-6 h-6 text-white" />
+                </div>
+                <h1 className="text-3xl font-bold bg-gradient-to-r from-rose-500 via-pink-500 to-purple-500 bg-clip-text text-transparent">
                   Poetry of Aditya
                 </h1>
               </div>
             </div>
-            <Badge variant="outline" className="text-purple-600 border-purple-300">
+            <Badge variant="outline" className="text-rose-600 border-rose-300 bg-gradient-to-r from-rose-50 to-pink-50 animate-pulse">
               ✨ Exclusive Collection
             </Badge>
           </div>
         </div>
       </div>
 
-      {/* Search and Filter Bar */}
+      {/* Enhanced Search and Filter Bar */}
       <div className="container mx-auto px-4 py-6">
-        <div className="max-w-4xl mx-auto space-y-4">
-          {/* Search Bar */}
-          <div className="relative">
-            <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
+        <div className="max-w-4xl mx-auto space-y-6">
+          {/* Enhanced Search Bar */}
+          <div className="relative group">
+            <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5 group-focus-within:text-rose-500 transition-colors duration-300" />
             <Input
               placeholder="Search through poetry..."
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
-              className="pl-10 pr-4 py-3 border-2 border-purple-200 focus:border-purple-500 transition-colors"
+              className="pl-10 pr-4 py-4 border-2 border-rose-200 focus:border-rose-400 transition-all duration-300 bg-white/90 backdrop-blur-sm shadow-lg"
             />
           </div>
 
-          {/* Category Filter */}
-          <div className="flex flex-wrap gap-2">
+          {/* Enhanced Category Filter */}
+          <div className="flex flex-wrap gap-3">
             {categories.map((category) => {
               const Icon = category.icon;
               return (
@@ -181,10 +227,10 @@ const PoetryOfAditya: React.FC = () => {
                   variant={selectedCategory === category.id ? "default" : "outline"}
                   size="sm"
                   onClick={() => setSelectedCategory(category.id)}
-                  className={`transition-all duration-300 ${
+                  className={`transition-all duration-300 transform hover:scale-105 ${
                     selectedCategory === category.id 
-                      ? 'bg-gradient-to-r from-purple-500 to-pink-500 text-white border-0' 
-                      : 'border-purple-300 text-purple-600 hover:bg-purple-50'
+                      ? `bg-gradient-to-r ${category.color} text-white border-0 shadow-lg` 
+                      : 'border-rose-300 text-rose-600 hover:bg-rose-50 bg-white/90 backdrop-blur-sm'
                   }`}
                 >
                   <Icon className="w-4 h-4 mr-2" />
@@ -196,16 +242,18 @@ const PoetryOfAditya: React.FC = () => {
         </div>
       </div>
 
-      {/* Content */}
+      {/* Content with Enhanced Cards */}
       <div className="container mx-auto px-4 pb-12">
         <div className="max-w-4xl mx-auto space-y-8">
           
-          {/* 7 Stages of Love */}
-          <Card className="group hover:shadow-xl transition-all duration-500 transform hover:-translate-y-1 border-0 bg-white/80 backdrop-blur-sm">
-            <CardHeader className="bg-gradient-to-r from-purple-500 to-pink-500 text-white rounded-t-lg">
-              <div className="flex items-center justify-between">
+          {/* Enhanced 7 Stages of Love */}
+          <Card className="group hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 border-0 bg-white/95 backdrop-blur-sm overflow-hidden">
+            <div className="absolute inset-0 bg-gradient-to-r from-rose-400/10 to-pink-400/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+            <CardHeader className="bg-gradient-to-r from-rose-400 via-pink-400 to-purple-400 text-white rounded-t-lg relative overflow-hidden">
+              <div className="absolute inset-0 bg-gradient-to-r from-rose-500/20 to-pink-500/20 animate-pulse"></div>
+              <div className="flex items-center justify-between relative z-10">
                 <CardTitle className="flex items-center text-2xl font-bold">
-                  <Heart className="w-6 h-6 mr-3" />
+                  <Heart className="w-7 h-7 mr-3 animate-pulse" />
                   7 Stages of Love
                 </CardTitle>
                 <div className="flex space-x-2">
@@ -213,17 +261,17 @@ const PoetryOfAditya: React.FC = () => {
                     size="sm"
                     variant="ghost"
                     onClick={() => toggleFavorite('stages')}
-                    className="text-white hover:bg-white/20"
+                    className="text-white hover:bg-white/20 transition-all duration-300 hover:scale-110"
                   >
-                    <Bookmark className={`w-4 h-4 ${favorites.includes('stages') ? 'fill-current' : ''}`} />
+                    <Bookmark className={`w-5 h-5 ${favorites.includes('stages') ? 'fill-current' : ''}`} />
                   </Button>
                   <Button
                     size="sm"
                     variant="ghost"
                     onClick={() => copyToClipboard('7 Stages of Love: Dilkashi, Uns, Ishq, Akidat, Ibadat, Junoon, Maut')}
-                    className="text-white hover:bg-white/20"
+                    className="text-white hover:bg-white/20 transition-all duration-300 hover:scale-110"
                   >
-                    <Copy className="w-4 h-4" />
+                    <Copy className="w-5 h-5" />
                   </Button>
                 </div>
               </div>
@@ -231,32 +279,43 @@ const PoetryOfAditya: React.FC = () => {
             <CardContent className="p-6">
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
                 {[
-                  { stage: 'Dilkashi', meaning: 'Attraction', color: 'from-red-400 to-pink-400' },
-                  { stage: 'Uns', meaning: 'Infatuation', color: 'from-pink-400 to-purple-400' },
-                  { stage: 'Ishq', meaning: 'Love', color: 'from-purple-400 to-indigo-400' },
-                  { stage: 'Akidat', meaning: 'Trust', color: 'from-indigo-400 to-blue-400' },
-                  { stage: 'Ibadat', meaning: 'Worship', color: 'from-blue-400 to-cyan-400' },
-                  { stage: 'Junoon', meaning: 'Madness', color: 'from-cyan-400 to-teal-400' },
-                  { stage: 'Maut', meaning: 'Death', color: 'from-teal-400 to-gray-400' }
-                ].map((item, index) => (
-                  <div 
-                    key={index} 
-                    className={`p-4 border border-gray-200 rounded-lg bg-gradient-to-r ${item.color} text-white transform transition-all duration-300 hover:scale-105 hover:shadow-lg`}
-                  >
-                    <h3 className="font-bold text-lg mb-1">{item.stage}</h3>
-                    <p className="text-white/90">{item.meaning}</p>
-                  </div>
-                ))}
+                  { stage: 'Dilkashi', meaning: 'Attraction', color: 'from-red-300 via-rose-300 to-pink-300', icon: Heart },
+                  { stage: 'Uns', meaning: 'Infatuation', color: 'from-pink-300 via-purple-300 to-indigo-300', icon: Star },
+                  { stage: 'Ishq', meaning: 'Love', color: 'from-purple-300 via-indigo-300 to-blue-300', icon: Heart },
+                  { stage: 'Akidat', meaning: 'Trust', color: 'from-indigo-300 via-blue-300 to-cyan-300', icon: Crown },
+                  { stage: 'Ibadat', meaning: 'Worship', color: 'from-blue-300 via-cyan-300 to-teal-300', icon: Flower },
+                  { stage: 'Junoon', meaning: 'Madness', color: 'from-cyan-300 via-teal-300 to-emerald-300', icon: Zap },
+                  { stage: 'Maut', meaning: 'Death', color: 'from-teal-300 via-emerald-300 to-gray-300', icon: Moon }
+                ].map((item, index) => {
+                  const Icon = item.icon;
+                  return (
+                    <div 
+                      key={index} 
+                      className={`p-4 border border-gray-200 rounded-lg bg-gradient-to-r ${item.color} text-white transform transition-all duration-300 hover:scale-105 hover:shadow-xl relative overflow-hidden group`}
+                    >
+                      <div className="absolute inset-0 bg-white/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                      <div className="relative z-10">
+                        <div className="flex items-center justify-between mb-2">
+                          <h3 className="font-bold text-lg">{item.stage}</h3>
+                          <Icon className="w-5 h-5 animate-pulse" />
+                        </div>
+                        <p className="text-white/90">{item.meaning}</p>
+                      </div>
+                    </div>
+                  );
+                })}
               </div>
             </CardContent>
           </Card>
 
-          {/* Poetic Quotes and Phrases */}
-          <Card className="group hover:shadow-xl transition-all duration-500 transform hover:-translate-y-1 border-0 bg-white/80 backdrop-blur-sm">
-            <CardHeader className="bg-gradient-to-r from-pink-500 to-rose-500 text-white rounded-t-lg">
-              <div className="flex items-center justify-between">
+          {/* Enhanced Poetic Quotes and Phrases */}
+          <Card className="group hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 border-0 bg-white/95 backdrop-blur-sm overflow-hidden">
+            <div className="absolute inset-0 bg-gradient-to-r from-pink-400/10 to-purple-400/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+            <CardHeader className="bg-gradient-to-r from-pink-400 via-purple-400 to-indigo-400 text-white rounded-t-lg relative overflow-hidden">
+              <div className="absolute inset-0 bg-gradient-to-r from-pink-500/20 to-purple-500/20 animate-pulse"></div>
+              <div className="flex items-center justify-between relative z-10">
                 <CardTitle className="flex items-center text-2xl font-bold">
-                  <BookOpen className="w-6 h-6 mr-3" />
+                  <BookOpen className="w-7 h-7 mr-3 animate-pulse" />
                   Poetic Quotes and Phrases
                 </CardTitle>
                 <div className="flex space-x-2">
@@ -264,44 +323,50 @@ const PoetryOfAditya: React.FC = () => {
                     size="sm"
                     variant="ghost"
                     onClick={() => toggleFavorite('quotes')}
-                    className="text-white hover:bg-white/20"
+                    className="text-white hover:bg-white/20 transition-all duration-300 hover:scale-110"
                   >
-                    <Bookmark className={`w-4 h-4 ${favorites.includes('quotes') ? 'fill-current' : ''}`} />
+                    <Bookmark className={`w-5 h-5 ${favorites.includes('quotes') ? 'fill-current' : ''}`} />
                   </Button>
                 </div>
               </div>
             </CardHeader>
-            <CardContent className="p-6 space-y-4">
-              <div className="p-6 border-l-4 border-purple-500 bg-gradient-to-r from-purple-50 to-pink-50 rounded-r-lg transform transition-all duration-300 hover:scale-105">
-                <p className="text-gray-800 italic text-lg leading-relaxed">
-                  "Itni gehrai se likhunga apne panno mein tumhe, ki padhne waalo roz talab ho jayegi tumhe dekhne ki."
-                </p>
-                <div className="mt-4 flex justify-end">
-                  <Button
-                    size="sm"
-                    variant="outline"
-                    onClick={() => copyToClipboard('Itni gehrai se likhunga apne panno mein tumhe, ki padhne waalo roz talab ho jayegi tumhe dekhne ki.')}
-                    className="text-purple-600 border-purple-300 hover:bg-purple-50"
-                  >
-                    <Copy className="w-4 h-4 mr-1" />
-                    Copy
-                  </Button>
+            <CardContent className="p-6 space-y-6">
+              <div className="p-6 border-l-4 border-rose-400 bg-gradient-to-r from-rose-50 via-pink-50 to-purple-50 rounded-r-lg transform transition-all duration-300 hover:scale-105 relative overflow-hidden group">
+                <div className="absolute inset-0 bg-gradient-to-r from-rose-100/50 to-pink-100/50 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                <div className="relative z-10">
+                  <p className="text-gray-800 italic text-lg leading-relaxed">
+                    "Itni gehrai se likhunga apne panno mein tumhe, ki padhne waalo roz talab ho jayegi tumhe dekhne ki."
+                  </p>
+                  <div className="mt-4 flex justify-end">
+                    <Button
+                      size="sm"
+                      variant="outline"
+                      onClick={() => copyToClipboard('Itni gehrai se likhunga apne panno mein tumhe, ki padhne waalo roz talab ho jayegi tumhe dekhne ki.')}
+                      className="text-rose-600 border-rose-300 hover:bg-rose-50 transition-all duration-300 hover:scale-105"
+                    >
+                      <Copy className="w-4 h-4 mr-1" />
+                      Copy
+                    </Button>
+                  </div>
                 </div>
               </div>
-              <div className="p-6 border-l-4 border-pink-500 bg-gradient-to-r from-pink-50 to-purple-50 rounded-r-lg transform transition-all duration-300 hover:scale-105">
-                <p className="text-gray-800 italic text-lg leading-relaxed">
-                  "In the realm of my poetry, you are the reason of creating the sense of muse at the core of mine."
-                </p>
-                <div className="mt-4 flex justify-end">
-                  <Button
-                    size="sm"
-                    variant="outline"
-                    onClick={() => copyToClipboard('In the realm of my poetry, you are the reason of creating the sense of muse at the core of mine.')}
-                    className="text-pink-600 border-pink-300 hover:bg-pink-50"
-                  >
-                    <Copy className="w-4 h-4 mr-1" />
-                    Copy
-                  </Button>
+              <div className="p-6 border-l-4 border-pink-400 bg-gradient-to-r from-pink-50 via-purple-50 to-rose-50 rounded-r-lg transform transition-all duration-300 hover:scale-105 relative overflow-hidden group">
+                <div className="absolute inset-0 bg-gradient-to-r from-pink-100/50 to-purple-100/50 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                <div className="relative z-10">
+                  <p className="text-gray-800 italic text-lg leading-relaxed">
+                    "In the realm of my poetry, you are the reason of creating the sense of muse at the core of mine."
+                  </p>
+                  <div className="mt-4 flex justify-end">
+                    <Button
+                      size="sm"
+                      variant="outline"
+                      onClick={() => copyToClipboard('In the realm of my poetry, you are the reason of creating the sense of muse at the core of mine.')}
+                      className="text-pink-600 border-pink-300 hover:bg-pink-50 transition-all duration-300 hover:scale-105"
+                    >
+                      <Copy className="w-4 h-4 mr-1" />
+                      Copy
+                    </Button>
+                  </div>
                 </div>
               </div>
             </CardContent>
