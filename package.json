@@ -12,7 +12,10 @@
     "backend": "cd backend && python start.py",
     "backend:dev": "cd backend && python -m uvicorn app:app --reload --host 0.0.0.0 --port 8000",
     "train": "python scripts/fine_tune.py",
-    "dataset": "python scripts/generate_dataset.py"
+    "dataset": "python scripts/generate_dataset.py",
+    "deploy": "bash deploy.sh",
+    "deploy:vercel": "vercel --prod",
+    "check-deployment": "node scripts/check-deployment.js"
   },
   "dependencies": {
     "@hookform/resolvers": "^3.9.0",

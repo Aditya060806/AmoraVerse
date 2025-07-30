@@ -1,127 +1,152 @@
-# AmoraVerse - AI Love Poetry Generator
+# AmoraVerse 🌹
 
-A beautiful and romantic web application that generates AI-powered love poetry and creates personalized romantic experiences with a hybrid AI system combining fine-tuned local models and external APIs.
+> AI-powered romantic poetry generation platform with hybrid architecture combining local models and cloud AI
 
-## 🌟 Features
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/Aditya060806/AmoraVerse)
 
-### 🤖 AI-Powered Poetry Generation
-- **Hybrid AI System**: Combines fine-tuned local models with GPT-4/Claude APIs
-- **Custom Dataset**: 300+ romantic poems across multiple languages and styles
-- **7 Stages of Love**: Dilkashi, Uns, Ishq, Akidat, Ibadat, Junoon, Maut
-- **Multi-Language Support**: English, Hindi, Urdu, Spanish, French
-- **Style Variations**: Free Verse, Ghazal, Shayari, Sonnet, Haiku, and more
-- **Emotional Tones**: Soft, Passionate, Playful, Soulful, Apology, and more
+## 🚀 Quick Deployment
 
-### 🎨 Creative Features
-- **Photo Upload & Mood Analysis**: Upload romantic photos for mood-based poetry
-- **Love Vault**: Store and manage your romantic memories
-- **Poem Editor**: Customize and edit generated poems
-- **Share Options**: Share your creations with loved ones
-- **Live Training Mode**: Add your poems to improve the AI model
-- **Poetic Voice Presets**: TharoorStyle™, Rumi™, Shakespeare™, Faiz Ahmad Faiz™
-
-### 📱 User Experience
-- **Mobile Responsive**: Beautiful experience on all devices
-- **Real-time Generation**: Fast, responsive poetry creation
-- **Confidence Scoring**: AI confidence indicators for quality assurance
-- **Multiple Variations**: Generate multiple poem versions
-- **Export Options**: PDF, PNG, animated MP4 formats
-
-## 🏗️ Architecture
-
-```
-AmoraVerse/
-├── frontend/                 # React + TypeScript frontend
-│   ├── src/
-│   │   ├── components/      # UI components
-│   │   ├── hooks/          # Custom hooks including useAmoraVerseAPI
-│   │   └── pages/          # Page components
-├── backend/                 # FastAPI backend
-│   ├── app.py              # Main API server
-│   ├── poet_model.py       # Local AI model
-│   ├── fallback_handler.py # External API integration
-│   ├── data_manager.py     # Data management
-│   └── requirements.txt    # Python dependencies
-├── scripts/                # Training and data scripts
-│   ├── generate_dataset.py # Dataset generation
-│   └── fine_tune.py       # Model training
-├── data/                   # Training data and logs
-│   ├── romantic_poems_dataset.jsonl
-│   ├── user_poems.jsonl
-│   └── amora-verse.db
-└── model/                  # Trained models
-    └── amora-poet-model/
-```
-
-## 🚀 Quick Start
-
-### Prerequisites
-- Node.js (version 18 or higher)
-- Python 3.8+
-- Git
-
-### Frontend Setup
+### One-Click Deploy to Vercel
 ```bash
-# Clone the repository
+# Clone the project
 git clone https://github.com/Aditya060806/AmoraVerse.git
 cd AmoraVerse
 
 # Install dependencies
 npm install
 
-# Start development server
+# Deploy to Vercel
+npm run deploy
+```
+
+### Detailed Deployment Guides
+- [Quick Deployment Guide](./QUICK_DEPLOY.md) - Complete deployment in 5 minutes
+- [Detailed Deployment Documentation](./DEPLOYMENT.md) - Complete deployment instructions
+
+## ✨ Features
+
+### 🎭 Poetry Generation
+- **Hybrid AI Architecture**: Local models + Cloud AI fallback
+- **Multiple Styles**: Free verse, sonnets, haiku, and more
+- **Emotional Tones**: Romantic, passionate, gentle, mystical, and more
+- **Multi-language Support**: English, Hindi, Urdu, and more
+
+### 🖼️ Image Analysis
+- **Mood Recognition**: Analyze emotions from photos
+- **Smart Prompts**: Generate poetry suggestions based on images
+- **Visual Inspiration**: Transform visual elements into poetry
+
+### 💝 Personalization Features
+- **Love Vault**: Save precious poems
+- **Photo Upload**: Upload couple photos for inspiration
+- **Sharing Options**: Multiple sharing formats (PDF, images)
+- **User Training**: Add personal poems to improve models
+
+### 🎨 User Experience
+- **Modern UI**: Elegant responsive design
+- **Real-time Generation**: Fast poetry creation
+- **Interactive Editing**: Real-time modification and optimization
+- **Mobile Optimized**: Perfect adaptation for phones and tablets
+
+## 🏗️ Technical Architecture
+
+### Frontend Tech Stack
+- **React 18** + **TypeScript**
+- **Vite** - Fast build tool
+- **Tailwind CSS** - Styling framework
+- **Shadcn/ui** - Component library
+- **React Router** - Route management
+
+### Backend Tech Stack
+- **FastAPI** - Python web framework
+- **Transformers** - AI model library
+- **SQLite** - Lightweight database
+- **Uvicorn** - ASGI server
+
+### AI Models
+- **Local Model**: Fine-tuned DialoGPT
+- **Cloud Fallback**: OpenAI GPT-4 / Anthropic Claude
+- **Hybrid Routing**: Smart selection of best models
+- **Confidence Scoring**: Automatic quality assessment
+
+## 📁 Project Structure
+
+```
+AmoraVerse/
+├── src/                    # Frontend source code
+│   ├── components/        # React components
+│   ├── hooks/            # Custom hooks
+│   ├── pages/            # Page components
+│   └── utils/            # Utility functions
+├── backend/              # Backend API
+│   ├── app.py           # Main API server
+│   ├── poet_model.py    # Local AI model
+│   ├── fallback_handler.py # External API integration
+│   └── requirements.txt  # Python dependencies
+├── scripts/              # Training and data scripts
+├── data/                 # Training data and logs
+└── model/               # Trained models
+```
+
+## 🚀 Quick Start
+
+### Local Development
+
+1. **Clone the project**
+```bash
+git clone https://github.com/Aditya060806/AmoraVerse.git
+cd AmoraVerse
+```
+
+2. **Install dependencies**
+```bash
+npm install
+```
+
+3. **Start development server**
+```bash
+# Start frontend
 npm run dev
+
+# Start backend (new terminal)
+npm run backend
 ```
 
-### Backend Setup
+4. **Access the application**
+- Frontend: http://localhost:8080
+- API Documentation: http://localhost:8001/docs
+
+### Production Deployment
+
+#### Vercel Deployment (Recommended)
 ```bash
-# Navigate to backend directory
-cd backend
-
-# Create virtual environment
-python -m venv venv
-source venv/bin/activate  # On Windows: venv\Scripts\activate
-
-# Install dependencies
-pip install -r requirements.txt
-
-# Set up environment variables
-cp .env.example .env
-# Edit .env with your API keys
-
-# Start the backend server
-python app.py
+npm run deploy
 ```
 
-### Model Training
+#### Manual Deployment
 ```bash
-# Generate the dataset
-python scripts/generate_dataset.py
+# Build frontend
+npm run build
 
-# Train the model
-python scripts/fine_tune.py
+# Deploy to Vercel
+vercel --prod
 ```
 
 ## 🔧 Configuration
 
 ### Environment Variables
-Create a `.env` file in the backend directory:
+Create a `.env` file:
 
 ```env
-# API Keys (optional for fallback)
-OPENAI_API_KEY=your_openai_api_key
-ANTHROPIC_API_KEY=your_anthropic_api_key
+# API Configuration
+VITE_API_URL=https://your-app.vercel.app/api
 
-# Database
-DATABASE_URL=sqlite:///data/amora-verse.db
-
-# Model Settings
-MODEL_PATH=model/amora-poet-model
+# Optional AI service keys
+OPENAI_API_KEY=your_openai_key
+ANTHROPIC_API_KEY=your_anthropic_key
 ```
 
 ## 📊 Dataset Information
-
-The AmoraVerse dataset includes:
 
 ### 7 Stages of Love (Persian/Urdu Tradition)
 - **Dilkashi (Attraction)**: Initial attraction and interest
@@ -132,16 +157,16 @@ The AmoraVerse dataset includes:
 - **Junoon (Madness)**: All-consuming passion
 - **Maut (Death)**: Love that transcends death
 
-### Poetic Styles
-- Free Verse, Ghazal, Shayari, Letter, Rhymed
+### Poetry Styles
+- Free verse, Ghazal, Shayari, Letter, Rhymed
 - Sonnet, Haiku, Villanelle, Sestina, Ode
 
-### Languages
+### Language Support
 - English, Hindi, Urdu, Spanish, French, Mixed
 
 ### Emotional Tones
 - Soft, Passionate, Playful, Soulful, Apology
-- Long-Distance, Proposal, Farewell, Mystical, Devotional
+- Long-distance, Proposal, Farewell, Mystical, Devotional
 
 ## 🤖 AI System Details
 
@@ -154,7 +179,7 @@ The AmoraVerse dataset includes:
 ### Training Specifications
 - **Base Model**: microsoft/DialoGPT-medium
 - **Training Data**: 300+ romantic poems
-- **Epochs**: 3-5 epochs
+- **Training Epochs**: 3-5 epochs
 - **Learning Rate**: 2e-5
 - **Batch Size**: 4
 - **Optimizer**: AdamW
@@ -164,13 +189,13 @@ The AmoraVerse dataset includes:
 - `POST /refine-poem`: Generate multiple variations
 - `POST /add-user-poem`: Add user poems to training data
 - `GET /model-status`: Check model status
-- `GET /styles`: Get available poetic styles
+- `GET /styles`: Get available poetry styles
 - `GET /tones`: Get available emotional tones
 - `POST /analyze-mood`: Analyze mood from images
 
 ## 🎯 Usage Examples
 
-### Generate a Romantic Poem
+### Generate Romantic Poetry
 ```javascript
 const { generatePoem } = useAmoraVerseAPI();
 
@@ -182,87 +207,47 @@ const poem = await generatePoem({
 });
 ```
 
-### Add User Poem for Training
+### Add User Poetry for Training
 ```javascript
 const { addUserPoem } = useAmoraVerseAPI();
 
 await addUserPoem({
   prompt: "Write about sunset love",
-  poem: "Your love like sunset golden...",
-  style: "Ghazal",
-  tone: "Soulful"
+  poem: "Your poetry content...",
+  style: "User Generated",
+  tone: "Personal"
 });
-```
-
-## 📈 Performance Metrics
-
-- **Generation Time**: < 2 seconds for local model
-- **Confidence Score**: 0.7+ for high-quality poems
-- **Dataset Size**: 300+ training examples
-- **Model Accuracy**: Continuously improving with user feedback
-
-## 🔄 Live Training
-
-The system supports live training where:
-1. Users can add their own poems
-2. System automatically retrains when dataset grows
-3. Model improves with user feedback
-4. Maintains privacy with local training
-
-## 🌍 Multi-Language Support
-
-### Hindi Examples
-```
-जो बीत गया है वो, अब दौर ना आएगा;
-इस दिल में सिवा तेरे कोई और ना आएगा;
-```
-
-### Urdu Examples
-```
-Husn-e-Jaana ki tareef mumkin nahi.
-Uska husn mujhe kuch aise fasaa kar deta hai,
-```
-
-### Mixed Language Support
-```
-Ke balat kar dekhte hain... tujhko aage badh nahi paate,
-Kitabe husn padhte hain, syllabus padh nahi paate.
 ```
 
 ## 🤝 Contributing
 
-1. Fork the repository
-2. Create a feature branch
-3. Add your romantic poems to the dataset
-4. Test the model training
-5. Submit a pull request
+Welcome contributions! Please check [CONTRIBUTING.md](./CONTRIBUTING.md) for details.
 
-### Adding Poems to Dataset
-```bash
-# Add your poems to data/user_poems.jsonl
-echo '{"prompt": "Your prompt", "completion": "Your poem"}' >> data/user_poems.jsonl
-
-# Retrain the model
-python scripts/fine_tune.py
-```
+### Development Process
+1. Fork the project
+2. Create a feature branch (`git checkout -b feature/AmazingFeature`)
+3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
+4. Push to the branch (`git push origin feature/AmazingFeature`)
+5. Open a Pull Request
 
 ## 📄 License
 
-This project is licensed under the MIT License.
+This project is licensed under the MIT License - see the [LICENSE](./LICENSE) file for details.
 
 ## 🙏 Acknowledgments
 
-- Inspired by Persian/Urdu poetic traditions
-- Built with modern AI/ML technologies
-- Community-driven dataset expansion
-- Open-source poetry generation
+- [Transformers](https://huggingface.co/transformers/) - AI model library
+- [FastAPI](https://fastapi.tiangolo.com/) - Modern Python web framework
+- [React](https://reactjs.org/) - User interface library
+- [Tailwind CSS](https://tailwindcss.com/) - CSS framework
+- [Vercel](https://vercel.com/) - Deployment platform
 
-## 📞 Support
+## 📞 Contact
 
-For questions, issues, or contributions:
-- GitHub Issues: [Report Issues](https://github.com/Aditya060806/AmoraVerse/issues)
-- Discussions: [Join Discussions](https://github.com/Aditya060806/AmoraVerse/discussions)
+- **Project Link**: [https://github.com/Aditya060806/AmoraVerse](https://github.com/Aditya060806/AmoraVerse)
+- **Issue Reports**: [Issues](https://github.com/Aditya060806/AmoraVerse/issues)
+- **Feature Requests**: [Feature Requests](https://github.com/Aditya060806/AmoraVerse/discussions)
 
 ---
 
-**AmoraVerse** - Where AI meets the poetry of love 💕
+⭐ If this project helps you, please give it a star!

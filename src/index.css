@@ -237,6 +237,55 @@ All colors MUST be HSL.
   }
 }
 
+@keyframes card-hover {
+  0% {
+    transform: translateY(0) scale(1);
+  }
+  50% {
+    transform: translateY(-5px) scale(1.02);
+  }
+  100% {
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes sparkle-float {
+  0%, 100% {
+    transform: translateY(0) rotate(0deg);
+    opacity: 0.6;
+  }
+  25% {
+    transform: translateY(-10px) rotate(90deg);
+    opacity: 1;
+  }
+  50% {
+    transform: translateY(-15px) rotate(180deg);
+    opacity: 0.8;
+  }
+  75% {
+    transform: translateY(-8px) rotate(270deg);
+    opacity: 1;
+  }
+}
+
+@keyframes magic-glow {
+  0%, 100% {
+    box-shadow: 0 0 20px rgba(236, 72, 153, 0.3);
+  }
+  50% {
+    box-shadow: 0 0 30px rgba(236, 72, 153, 0.6), 0 0 40px rgba(168, 85, 247, 0.4);
+  }
+}
+
+@keyframes text-shimmer {
+  0% {
+    background-position: -200% center;
+  }
+  100% {
+    background-position: 200% center;
+  }
+}
+
 @keyframes shake {
   0%, 100% {
     transform: translateX(0);
@@ -294,6 +343,273 @@ All colors MUST be HSL.
   animation: unlock-success 0.5s ease-in-out;
 }
 
+.animate-card-hover {
+  animation: card-hover 0.6s ease-in-out;
+}
+
+.animate-sparkle-float {
+  animation: sparkle-float 4s ease-in-out infinite;
+}
+
+.animate-magic-glow {
+  animation: magic-glow 2s ease-in-out infinite;
+}
+
+.animate-text-shimmer {
+  background: linear-gradient(90deg, transparent, rgba(236, 72, 153, 0.3), transparent);
+  background-size: 200% 100%;
+  animation: text-shimmer 3s ease-in-out infinite;
+}
+
+.inspiration-card {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
+}
+
+.inspiration-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  transition: left 0.5s;
+}
+
+.inspiration-card:hover::before {
+  left: 100%;
+}
+
+.inspiration-card:hover {
+  transform: translateY(-8px) scale(1.02);
+  box-shadow: 0 20px 40px rgba(236, 72, 153, 0.2);
+}
+
+.inspiration-image {
+  transition: all 0.3s ease;
+  position: relative;
+}
+
+.inspiration-image:hover {
+  transform: scale(1.05);
+  filter: brightness(1.1) contrast(1.1);
+}
+
+.inspiration-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(236, 72, 153, 0.1), rgba(168, 85, 247, 0.1));
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.inspiration-card:hover .inspiration-overlay {
+  opacity: 1;
+}
+
+/* LoveVault Enhancements */
+.line-clamp-2 {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.line-clamp-3 {
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.vault-poem-card {
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.vault-poem-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(236, 72, 153, 0.1), transparent);
+  transition: left 0.5s;
+}
+
+.vault-poem-card:hover::before {
+  left: 100%;
+}
+
+.vault-poem-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(236, 72, 153, 0.15);
+}
+
+.vault-timeline-line {
+  background: linear-gradient(to bottom, hsl(var(--primary) / 0.2), transparent);
+}
+
+.vault-favorite-badge {
+  background: linear-gradient(135deg, hsl(var(--accent)), hsl(var(--accent) / 0.8));
+  color: white;
+  border: none;
+}
+
+.vault-search-input {
+  background: hsl(var(--background));
+  border: 1px solid hsl(var(--border));
+  transition: all 0.3s ease;
+}
+
+.vault-search-input:focus {
+  border-color: hsl(var(--primary));
+  box-shadow: 0 0 0 2px hsl(var(--primary) / 0.2);
+}
+
+.vault-filter-button {
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.vault-filter-button::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  transition: left 0.5s;
+}
+
+.vault-filter-button:hover::before {
+  left: 100%;
+}
+
+/* Hero Button Enhancements */
+.hero-button {
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.hero-button::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  transition: left 0.6s;
+}
+
+.hero-button:hover::before {
+  left: 100%;
+}
+
+.hero-button:active {
+  transform: scale(0.98);
+}
+
+.hero-button:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(236, 72, 153, 0.3);
+}
+
+.hero-button-love {
+  background: linear-gradient(135deg, #ec4899, #be185d);
+  border: none;
+  color: white;
+  font-weight: 600;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+.hero-button-love:hover {
+  background: linear-gradient(135deg, #db2777, #a21caf);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(236, 72, 153, 0.4);
+}
+
+.hero-button-elegant {
+  background: white;
+  border: 2px solid #e5e7eb;
+  color: #374151;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+.hero-button-elegant:hover {
+  background: #f9fafb;
+  border-color: #d1d5db;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+}
+
+/* Button click animation */
+@keyframes button-press {
+  0% { transform: scale(1); }
+  50% { transform: scale(0.95); }
+  100% { transform: scale(1); }
+}
+
+.button-press {
+  animation: button-press 0.2s ease-in-out;
+}
+
+/* Hero Button Size Consistency */
+.hero-button {
+  min-width: 200px;
+  max-width: 300px;
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 600;
+  letter-spacing: 0.025em;
+  border-radius: 12px;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.hero-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+}
+
+.hero-button:active {
+  transform: translateY(0);
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+}
+
+/* Ensure both buttons have the same width */
+.hero-button-love,
+.hero-button-elegant {
+  width: 100%;
+  max-width: 280px;
+  min-width: 200px;
+}
+
+@media (min-width: 640px) {
+  .hero-button-love,
+  .hero-button-elegant {
+    width: 256px; /* w-64 */
+  }
+}
+
+@media (min-width: 768px) {
+  .hero-button-love,
+  .hero-button-elegant {
+    width: 288px; /* w-72 */
+  }
+}
+
 /* Custom gradients */
 .love-gradient {
   background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
@@ -348,23 +664,81 @@ All colors MUST be HSL.
   }
 }
 
-/* Custom scrollbar */
+/* Custom scrollbar styling to match pink theme */
 ::-webkit-scrollbar {
-  width: 8px;
+  width: 12px;
 }
 
 ::-webkit-scrollbar-track {
-  background: #f1f1f1;
-  border-radius: 4px;
+  background: linear-gradient(135deg, #fdf2f8, #fce7f3);
+  border-radius: 6px;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-  border-radius: 4px;
+  background: linear-gradient(135deg, #ec4899, #be185d);
+  border-radius: 6px;
+  border: 2px solid #fdf2f8;
+  transition: all 0.3s ease;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: linear-gradient(135deg, #5a6fd8 0%, #6a4190 100%);
+  background: linear-gradient(135deg, #db2777, #a21caf);
+  transform: scale(1.05);
+}
+
+::-webkit-scrollbar-thumb:active {
+  background: linear-gradient(135deg, #be185d, #831843);
+}
+
+/* Firefox scrollbar styling */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: #ec4899 #fdf2f8;
+}
+
+/* Custom scrollbar for specific elements */
+.custom-scrollbar::-webkit-scrollbar {
+  width: 8px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: rgba(253, 242, 248, 0.5);
+  border-radius: 4px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background: linear-gradient(135deg, #ec4899, #be185d);
+  border-radius: 4px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(135deg, #db2777, #a21caf);
+}
+
+/* Smooth scrolling for the entire page */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Enhanced scrollbar for love-themed elements */
+.love-scrollbar::-webkit-scrollbar {
+  width: 10px;
+}
+
+.love-scrollbar::-webkit-scrollbar-track {
+  background: linear-gradient(180deg, #fdf2f8 0%, #fce7f3 100%);
+  border-radius: 5px;
+}
+
+.love-scrollbar::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, #ec4899 0%, #be185d 100%);
+  border-radius: 5px;
+  border: 1px solid #fdf2f8;
+}
+
+.love-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(180deg, #db2777 0%, #a21caf 100%);
+  box-shadow: 0 0 8px rgba(236, 72, 153, 0.3);
 }
 
 /* Enhanced button variants */
@@ -588,4 +962,48 @@ All colors MUST be HSL.
   50% {
     opacity: 0.5;
   }
+}
+
+/* Developed By Section Styling - Now integrated with background */
+.developed-by-section {
+  /* Removed - no longer needed */
+}
+
+.developed-by-text {
+  /* Removed - no longer needed */
+}
+
+.social-icon-button {
+  /* Removed - no longer needed */
+}
+
+/* Responsive adjustments for the developed by section */
+@media (max-width: 640px) {
+  .developed-by-section {
+    /* Removed - no longer needed */
+  }
+  
+  .social-icon-button {
+    /* Removed - no longer needed */
+  }
+  
+  .developed-by-text {
+    /* Removed - no longer needed */
+  }
+}
+
+/* Fixed positioning for Developed By section */
+.developed-by-fixed {
+  position: fixed !important;
+  top: 16px !important;
+  right: 16px !important;
+  z-index: 9999 !important;
+  pointer-events: auto !important;
+  transform: none !important;
+  will-change: auto !important;
+}
+
+/* Ensure the section doesn't get affected by parent transforms */
+.developed-by-fixed * {
+  transform: none !important;
 }

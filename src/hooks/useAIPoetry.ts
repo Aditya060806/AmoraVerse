@@ -307,9 +307,74 @@ That lives within each beating heart.`
     }
   };
 
+  const generateRandomPoem = async (): Promise<string> => {
+    setIsGenerating(true);
+
+    try {
+      await new Promise(resolve => setTimeout(resolve, 2000 + Math.random() * 1000));
+
+      const randomPoems = [
+        `In the quiet spaces between heartbeats,
+Where love whispers its sweetest secrets,
+I find you—my favorite melody,
+The song my soul has always known.
+
+Your presence is my morning light,
+Your touch my evening prayer,
+In every moment, you remind me
+That love is the answer to every question.`,
+
+        `Like starlight finding its way through darkness,
+Your love illuminates my world.
+In your eyes, I see tomorrow's promise,
+In your smile, the warmth of home.
+
+Every day with you is a new beginning,
+A fresh page in our love story,
+Written in the language of hearts
+That speak without needing words.`,
+
+        `You are the poetry I never knew I needed,
+The verse that completes my soul.
+In your embrace, I find my purpose,
+In your love, my greatest adventure.
+
+Together we dance through life's seasons,
+Each step a testament to love's power,
+Each moment a treasure to cherish,
+Each day a gift from heaven above.`,
+
+        `When I think of love, I think of you,
+Of how your laughter fills my heart,
+Of how your touch makes everything new,
+Of how you make the ordinary extraordinary.
+
+You are my dream come true,
+My wish upon a star,
+My everything, my always,
+My love, my heart, my soul.`,
+
+        `In the garden of my heart,
+You planted seeds of love that bloom
+In colors I never knew existed,
+In fragrances that speak of home.
+
+Your love is my compass,
+Your heart my true north,
+Together we navigate life's journey,
+Hand in hand, soul to soul.`
+      ];
+
+      return randomPoems[Math.floor(Math.random() * randomPoems.length)];
+    } finally {
+      setIsGenerating(false);
+    }
+  };
+
   return {
     generateAdvancedPoem,
     analyzePhotoForPoetry,
+    generateRandomPoem,
     isGenerating
   };
 };
