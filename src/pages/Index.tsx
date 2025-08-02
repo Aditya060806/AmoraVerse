@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Heart, Sparkles, Stars, Camera, BookOpen, Wand2, Image as ImageIcon, PenTool, Zap } from 'lucide-react';
+import { Heart, Sparkles, Stars, Camera, BookOpen, Wand2, Image as ImageIcon, PenTool, Zap, Gift } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { PhotoUpload } from '@/components/PhotoUpload';
 import { PromptGenerator } from '@/components/PromptGenerator';
@@ -252,6 +252,26 @@ const Index = () => {
                   <Heart className="w-4 h-4 mr-2" />
                   <span className="hidden sm:inline">Visit Pixel Amor</span>
                   <span className="sm:hidden">Pixel Amor</span>
+                </Button>
+              </a>
+            </div>
+            
+            {/* Proposal Link */}
+            <div className="mt-2 sm:mt-3 animate-fade-in-up" style={{animationDelay: '1.2s'}}>
+              <a 
+                href="https://botfather.cloud/Tools/Propose/" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="inline-block"
+              >
+                <Button 
+                  variant="outline" 
+                  size="sm"
+                  className="border-rose-300 text-rose-600 hover:bg-rose-50 hover:border-rose-400 transition-all duration-300"
+                >
+                  <Gift className="w-4 h-4 mr-2" />
+                  <span className="hidden sm:inline">Proposal</span>
+                  <span className="sm:hidden">Proposal</span>
                 </Button>
               </a>
             </div>
